@@ -5,22 +5,36 @@
 
 const tareaModel = require('../models/tarea.model');
 
-// GET /api/tareas - Obtener todas las tareas
+// GET /api/tareas
 const obtenerTodas = (req, res) => {
-  try {
-    const tareas = tareaModel.obtenerTodas();
-    res.json({
-      success: true,
-      data: tareas,
-      count: tareas.length
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al obtener las tareas',
-      error: error.message
-    });
-  }
+    try {
+        const tareas = tareaModel.obtenerTodas();
+        const formato = req.query.formato; // Capturamos el parámetro 'formato' de la URL
+
+        // Si el usuario pide texto plano
+        if (formato === 'text') {
+            let texto = 'Lista de Tareas:\n\n';
+            tareas.forEach(t => {
+                const estado = t.completada ? 'Tarea completada: true' : 'Tarea completada: false';
+                texto += `${t.id} - ${t.titulo}. ${estado} \n`;
+            });
+            // Usamos res.send() en lugar de res.json() para devolver texto
+            return res.send(texto); 
+        }
+
+        // Por defecto, devolvemos JSON
+        res.json({
+            success: true,
+            data: tareas,
+            count: tareas.length
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener las tareas',
+            error: error.message
+        });
+    }
 };
 
 // GET /api/tareas/:id - Obtener una tarea por ID
