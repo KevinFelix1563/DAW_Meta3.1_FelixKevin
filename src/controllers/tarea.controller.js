@@ -209,6 +209,34 @@ const eliminar = (req, res) => {
   }
 };
 
+// GET /api/tareas/buscar?q=termino
+const buscarTareas = (req, res) => {
+    try {
+        const termino = req.query.q; // Capturamos el parametro 'q' de la URL
+        
+        if (!termino) {
+            return res.status(400).json({
+                success: false,
+                message: 'El parametro de busqueda "q" es requerido'
+            });
+        }
+
+        const resultados = tareaModel.buscarPorTitulo(termino);
+        
+        res.json({
+            success: true,
+            data: resultados,
+            count: resultados.length
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al buscar tareas',
+            error: error.message
+        });
+    }
+};
+
 // Exportar todos los métodos del controlador
 module.exports = {
   obtenerTodas,
@@ -216,5 +244,6 @@ module.exports = {
   crear,
   actualizarCompleta,
   actualizarParcial,
-  eliminar
+  eliminar,
+  buscarTareas
 };

@@ -157,6 +157,33 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "http://localhost:3000/api/tareas/buscar",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/tareas/buscar?q=express",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "tareas",
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "express"
+            }
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

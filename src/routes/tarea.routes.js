@@ -11,6 +11,9 @@ const router = express.Router();
 // GET /api/tareas - Obtener todas las tareas
 router.get('/', tareaController.obtenerTodas);
 
+// GET /api/tareas/buscar Buscar tareas por titulo
+router.get('/buscar', tareaController.buscarTareas);
+
 // GET /api/tareas/:id - Obtener una tarea por ID
 router.get('/:id', tareaController.obtenerPorId);
 

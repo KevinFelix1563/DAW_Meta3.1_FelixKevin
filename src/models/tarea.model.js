@@ -76,6 +76,14 @@ const eliminar = (id) => {
   return tareaEliminada;
 };
 
+// Buscar tareas por titulo (parcial y case insensitive)
+const buscarPorTitulo = (termino) => {
+    const terminoMinusculas = termino.toLowerCase();
+    return tareas.filter(tarea => 
+        tarea.titulo.toLowerCase().includes(terminoMinusculas)
+    );
+};
+
 // Exportar todas las funciones del modelo
 module.exports = {
   obtenerTodas,
@@ -83,5 +91,6 @@ module.exports = {
   crear,
   actualizarCompleta,
   actualizarParcial,
-  eliminar
+  eliminar,
+  buscarPorTitulo
 };
