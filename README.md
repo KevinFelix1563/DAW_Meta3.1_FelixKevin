@@ -1,8 +1,11 @@
 # API REST con Express - Gestión de Tareas (MVC)
 
 **Autor:** Kevin Yassir Felix Sanchez
+
 **Programa:** Ingeniería en Computación 
+
 **Universidad:** Universidad Autónoma de Baja California
+
 **Asignatura:** Desarrollo de Aplicaciones Web 
 
 ## Descripción del Proyecto
